@@ -1,0 +1,10 @@
+{
+    "name": "processamento-imagens-spa-aws",
+    "version": "1.0.0",
+    "description": "SPA para processamento de imagens - AWS",
+    "scripts": {
+      "build": "node build.js",
+      "dev": "python3 -m http.server 8000"
+    },
+    "author": ""
+  } 

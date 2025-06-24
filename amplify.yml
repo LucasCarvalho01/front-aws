@@ -3,8 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Iniciando pre-build do projeto front-end"
-        - echo "Verificando arquivos necessários..."
+        - echo "Iniciando pre-build..."
     build:
       commands:
         - echo "Build da aplicação front-end estática"

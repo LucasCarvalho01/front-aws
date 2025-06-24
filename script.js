@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = window.APP_CONFIG.GatewayUrl;
+    const API_BASE_URL = window.APP_CONFIG.apiBaseUrl;
     const UPLOAD_URL_ENDPOINT = `${API_BASE_URL}/upload`;
     const EDIT_IMAGE_ENDPOINT = `${API_BASE_URL}/edit`;
     const DOWNLOAD_URL_ENDPOINT = `${API_BASE_URL}/images/`;
 
-    AWS.config.region = window.APP_CONFIG.Region;
+    AWS.config.region = window.APP_CONFIG.region;
 
     let currentUser = null;
 
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openTab = openTab;
 
     const cognitoAuthConfig = {
-        authority: window.APP_CONFIG.Authority,
-        client_id: window.APP_CONFIG.ClientId,
+        authority: window.APP_CONFIG.authority,
+        client_id: window.APP_CONFIG.clientId,
         redirect_uri: window.location.origin,
         post_logout_redirect_uri: window.location.origin,
         response_type: "code",
@@ -113,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function logout() {
         try {
-            const clientId = window.APP_CONFIG.ClientId;
+            const clientId = window.APP_CONFIG.clientId;
             const logoutUri = window.location.origin;
-            const cognitoDomain = window.APP_CONFIG.Domain;
+            const cognitoDomain = window.APP_CONFIG.domain;
             
             await userManager.removeUser();
             currentUser = null;
