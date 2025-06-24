@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Imagens Serverless</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1563.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client-ts/3.3.0/browser/oidc-client-ts.min.js"></script>
+</head>
+
+<body>
+    <div id="loginScreen" class="modal">
+        <div class="modal-content">
+            <h2>Login</h2>
+            <button id="loginButton" class="login-btn">Login via AWS Cognito</button>
+            <div id="authMessage"></div>
+        </div>
+    </div>
+
+    <div id="mainApp" style="display: none;">
+        <header>
+            <h1>Processador de Imagens</h1>
+            <div class="user-info">
+                <span>Logado como: <span id="userEmail"></span></span>
+                <button id="logoutButton">Sair</button>
+            </div>
+        </header>
+
+        <nav>
+            <button class="tab-button active" onclick="openTab('uploadTab')">Upload</button>
+            <button class="tab-button" onclick="openTab('editTab')">Editar</button>
+            <button class="tab-button" onclick="openTab('downloadTab')">Download</button>
+        </nav>
+
+        <main>
+            <div id="uploadTab" class="tab-content active">
+                <h2>1. Fazer Upload da Imagem</h2>
+                <div>
+                    <label for="imageFile">Selecione a imagem:</label>
+                    <input type="file" id="imageFile" accept="image/*">
+                </div>
+                <div id="imagePreviewContainer" class="image-preview-container" style="display: none;">
+                    <img id="imagePreview" class="image-preview" alt="Preview da imagem selecionada">
+                    <button type="button" id="removeImageButton" class="remove-image-btn">×</button>
+                </div>
+                <div>
+                    <label for="imageKeyUpload">Nome do arquivo (chave):</label>
+                    <input type="text" id="imageKeyUpload" placeholder="ex: minhafoto.jpg">
+                </div>
+                <button id="uploadButton">Enviar Imagem</button>
+            </div>
+
+            <div id="editTab" class="tab-content">
+                <h2>2. Editar Imagem</h2>
+                <div>
+                    <label for="imageKeyEdit">Nome do arquivo (chave) para editar:</label>
+                    <input type="text" id="imageKeyEdit" placeholder="ex: minhafoto.jpg">
+                </div>
+                <div>
+                    <label for="brightness">Brilho (0-100):</label>
+                    <input type="number" id="brightness" min="0" max="100" value="80">
+                </div>
+                <div>
+                    <label for="contrast">Contraste (0-100):</label>
+                    <input type="number" id="contrast" min="0" max="100" value="70">
+                </div>
+                <div>
+                    <label for="sharpness">Nitidez (0-100):</label>
+                    <input type="number" id="sharpness" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <label for="color">Cor (0-100):</label>
+                    <input type="number" id="color" min="0" max="100" value="70">
+                </div>
+                <button id="editButton">Aplicar Edição</button>
+            </div>
+
+            <div id="downloadTab" class="tab-content">
+                <h2>3. Baixar</h2>
+                <div>
+                    <label for="imageKeyDownl_oad">Nome do arquivo (chave) da imagem:</label>
+                    <input type="text" id="imageKeyDownl_oad" placeholder="ex: minhafoto.jpg">
+                </div>
+                <div class="download-options">
+                    <input type="checkbox" name="isThumbnailSelect" id="isThumbnailSelect">
+                    <label for="isThumbnailSelect" id="isThumbnailSelectLabel">Versão Thumbnail?</label>
+                </div>
+                <div class="download-options">
+                    <input type="checkbox" name="isEditedSelect" id="isEditedSelect">
+                    <label for="isEditedSelect">Versão Editada?</label>
+                </div>
+
+                <button id="downloadButton">Baixar</button>
+            </div>
+
+            <div id="statusMessage"></div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

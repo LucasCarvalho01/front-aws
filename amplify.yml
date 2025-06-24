@@ -1,0 +1,23 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Iniciando pre-build do projeto front-end"
+        - echo "Verificando arquivos necessários..."
+    build:
+      commands:
+        - echo "Build da aplicação front-end estática"
+        - echo "Não são necessários comandos de build para este projeto"
+        - ls -la
+    postBuild:
+      commands:
+        - echo "Build concluído com sucesso"
+        - echo "Preparando arquivos para deploy..."
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'
+    name: sistema-upload-imagens
+  cache:
+    paths: [] 
