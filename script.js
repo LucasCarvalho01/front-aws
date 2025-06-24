@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cognitoAuthConfig = {
         authority: window.APP_CONFIG.authority,
         client_id: window.APP_CONFIG.clientId,
-        redirect_uri: window.location.origin,
-        post_logout_redirect_uri: window.location.origin,
+        redirect_uri: window.location.href,
+        post_logout_redirect_uri: window.location.href,
         response_type: "code",
         scope: "email openid profile",
         loadUserInfo: false
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function logout() {
         try {
             const clientId = window.APP_CONFIG.clientId;
-            const logoutUri = window.location.origin;
+            const logoutUri = window.location.href;
             const cognitoDomain = window.APP_CONFIG.domain;
             
             await userManager.removeUser();
