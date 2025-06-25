@@ -4,11 +4,16 @@ frontend:
     preBuild:
       commands:
         - echo "Iniciando pre-build..."
+        - echo "Verificando Node.js version..."
+        - node --version
+        - npm --version
     build:
       commands:
-        - echo "Build da aplicação front-end estática"
-        - echo "Não são necessários comandos de build para este projeto"
+        - echo "build com variáveis de ambiente"
+        - node build.js
+        - echo "Build concluído, verificando arquivos gerados..."
         - ls -la
+        - cat config.js
     postBuild:
       commands:
         - echo "Build concluído com sucesso"
